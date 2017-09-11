@@ -1,0 +1,2 @@
+# geteduSystemScore
+模拟登陆正方教务网，并通过HTTPClient模拟登陆后用Jsoup进行解析到成绩然后通过将数据转化为excel存放到E盘中。
