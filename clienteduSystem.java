@@ -43,18 +43,18 @@ import jxl.write.WritableWorkbook;
 class clienteduSystem
 {
 	public static HttpClient client=new DefaultHttpClient();
-	public static String TextBox1="1151308218";
+	public static String TextBox1="*******";//ä½ çš„å­¦å·
 	public static String gettimetable="http://jwby.hyit.edu.cn/xskbcx.aspx?xh="+TextBox1;
 	public static String getscoreurl="http://jwby.hyit.edu.cn/xscj_gc.aspx?xh="+TextBox1;
-	public static String button="°´³É¼¨²éÑ¯";
+	public static String button="æŒ‰æˆç»©æŸ¥è¯¢";
 	public static List<String>  getJESSID() throws IOException
 	{
 		String url="http://jwby.hyit.edu.cn/";
 		org.jsoup.nodes.Document doc=Jsoup.connect(url).get();
 		Elements element=doc.select("form").select("input[name=__VIEWSTATE]");
 		String view=(String)element.attr("value");
-		String TextBox2="154851";
-		String RadioButtonList="Ñ§Éú";
+		String TextBox2="******";//ä½ çš„å¯†ç 
+		String RadioButtonList="å­¦ç”Ÿ";
 		String TextBox3="";
 		String Button1="";
 		List<String> list1=new ArrayList<String>();
@@ -114,7 +114,7 @@ class clienteduSystem
 		}
 
 		HSSFWorkbook workbook=new HSSFWorkbook();
-		HSSFSheet sheet=workbook.createSheet("³É¼¨±í");
+		HSSFSheet sheet=workbook.createSheet("æˆç»©è¡¨");
 		HSSFRow row=sheet.createRow(0);
 		HSSFCell cell=row.createCell(0);
 		cell.setCellValue(s[num-1][0]);
@@ -129,9 +129,9 @@ class clienteduSystem
 		}
 		try
 		{
-			FileOutputStream file=new FileOutputStream("E:\\ÎÄ¼ş\\½ÌÎñÍø\\³É¼¨±í.xls");
+			FileOutputStream file=new FileOutputStream("E:\\æ–‡ä»¶\\æ•™åŠ¡ç½‘\\æˆç»©è¡¨.xls");
 			workbook.write(file);
-			System.out.println("Ğ´Èë³É¹¦");
+			System.out.println("å†™å…¥æˆåŠŸ");
 			file.close();
 		}catch(IOException e)
 		{
@@ -175,7 +175,7 @@ class clienteduSystem
 		HttpPost post=new HttpPost(url);
 		post.setHeader("Referer", url);
 		ResponseHandler<String> responsehandler=new BasicResponseHandler();
-		String button="°´Ñ§ÆÚ²éÑ¯";
+		String button="æŒ‰å­¦æœŸæŸ¥è¯¢";
 		String responsebody="";
 		List<NameValuePair>list=new ArrayList<NameValuePair>();
 		list.add(new BasicNameValuePair("__VIEWSTATE",view));
