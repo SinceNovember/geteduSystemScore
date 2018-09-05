@@ -1,4 +1,5 @@
-package loginjiaowuwang;
+package com.liu;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +28,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.mime.Header;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -37,13 +39,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 import org.omg.CORBA.portable.InputStream;
 
-import jxl.Workbook;
-import jxl.write.WritableWorkbook;
+//import jxl.Workbook;
+//import jxl.write.WritableWorkbook;
 
 class clienteduSystem
 {
 	public static HttpClient client=new DefaultHttpClient();
-	public static String TextBox1="*******";//你的学号
+	public static String TextBox1=" ";//你的学号
 	public static String gettimetable="http://jwby.hyit.edu.cn/xskbcx.aspx?xh="+TextBox1;
 	public static String getscoreurl="http://jwby.hyit.edu.cn/xscj_gc.aspx?xh="+TextBox1;
 	public static String button="按成绩查询";
@@ -53,7 +55,7 @@ class clienteduSystem
 		org.jsoup.nodes.Document doc=Jsoup.connect(url).get();
 		Elements element=doc.select("form").select("input[name=__VIEWSTATE]");
 		String view=(String)element.attr("value");
-		String TextBox2="******";//你的密码
+		String TextBox2=" ";//你的密码
 		String RadioButtonList="学生";
 		String TextBox3="";
 		String Button1="";
@@ -71,15 +73,19 @@ class clienteduSystem
 			post.setEntity(new UrlEncodedFormEntity(list));
 			HttpResponse response=client.execute(post);
 		//	System.out.println("response"+response);
-		//	System.out.println("status:"+response.getStatusLine());
+//			System.out.println("status:"+response.getAllHeaders);
 			HttpEntity entity=response.getEntity();
 			//System.out.println("entity"+entity);
 			String result=EntityUtils.toString(entity,"utf-8");
+			System.out.println("resutl:"+result);
 			//System.out.println("result"+result);
 			org.apache.http.Header location=response.getFirstHeader("Location");
+			System.out.println("location:"+location);
 			String s=location.getValue().toString();
+			System.out.println("ss:"+s);
 			list1.add(s);
 			org.apache.http.Header cookie=response.getFirstHeader("Set-Cookie");
+			System.out.println("cookie:"+cookie);
 			String cookie1=cookie.getValue().toString();
 			list1.add(cookie1);
 			return list1;
